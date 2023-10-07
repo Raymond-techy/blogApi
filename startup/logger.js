@@ -6,6 +6,7 @@ const logger = winston.createLogger({
   format: winston.format.json(),
   defaultMeta: { service: "user-service" },
   transports: [
+    // new winston.transports.ConsoleTransportOptions.handleExceptions
     new winston.transports.File({ filename: "error.log", level: "error" }),
     new winston.transports.File({ filename: "combined.log" }),
     new winston.transports.MongoDB({
@@ -17,7 +18,5 @@ const logger = winston.createLogger({
     }),
   ],
 });
-
-// 2QP4EEQTjun7qQtv
 
 module.exports = logger;
