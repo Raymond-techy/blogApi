@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const config = require("./config");
+const logger = require("./logger");
 module.exports = function () {
   mongoose
     .connect(config.MONGO_URL)
-    .then(() => console.log("Connected to database..."))
-    .catch((err) => console.log("Couldn't connect to database..."));
+    .then(() => logger.info("Connected to database."));
 };
