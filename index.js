@@ -10,6 +10,7 @@ const logger = require("./startup/logger");
 const error = require("./middleware/error");
 
 require("./startup/db")();
+require("./startup/prod")(app);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
