@@ -4,5 +4,5 @@ const logger = require("./logger");
 module.exports = function () {
   mongoose
     .connect(config.MONGO_URL)
-    .then(() => logger.info("Connected to database."));
+    .then(() => logger.info("Connected to database..."));
 };

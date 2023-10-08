@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const config = require("../startup/config");
 
 async function auth(req, res, next) {
   const token = req.header("x-auth-token");
@@ -7,7 +8,7 @@ async function auth(req, res, next) {
       .status(401)
       .send({ message: "Access denied. No token provided" });
   try {
-    const decode = jwt.verify(token, "Blog_jwtprivatekey");
+    const decode = jwt.verify(token, config.JWT_KEY);
     req.user = decode;
     next();
   } catch (error) {

@@ -60,3 +60,7 @@
 {"level":"info","message":"Connected to database...","service":"user-service"}
 {"level":"info","message":"App started on port 9000","service":"user-service"}
 {"level":"info","message":"Connected to database.","service":"user-service"}
+{"level":"info","message":"App started on port 9000","service":"user-service"}
+{"level":"info","message":"Connected to database.","service":"user-service"}
+{"level":"info","message":"App started on port 9000","service":"user-service"}
+{"level":"info","message":"Connected to database...","service":"user-service"}
