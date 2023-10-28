@@ -21,4 +21,4 @@ app.use("/api/auth", auth);
 
 app.use(error);
 
-app.listen(config.port, () => logger.info("App started on port 9000"));
+app.listen(config.port, () => console.log("App started on port 9000"));

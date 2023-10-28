@@ -20,6 +20,10 @@ const userSchema = new mongoose.Schema({
     required: true,
     minlength: 5,
   },
+  role: {
+    type: String,
+    enum: ["admin", "user"],
+  },
   likes: [
     {
       type: mongoose.Schema.Types.ObjectId,

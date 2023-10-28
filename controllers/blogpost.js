@@ -1,40 +1,35 @@
 const mongoose = require("mongoose");
 const { validatePost, BlogPost } = require("../models/blogPost");
 const { User } = require("../models/users");
+const {
+  createBlogPost,
+  getBlogPosts,
+  getMyBlogPost,
+  getSinglePost,
+} = require("../service/post");
 
 const createPost = async (req, res) => {
-  const { error } = validatePost(req.body);
-  if (error) return res.status(400).send({ error: error.details[0].message });
+  const body = req.body;
+  const { _id: author } = req.user;
 
-  const { title, description, post } = req.body;
-
-  const newPost = new BlogPost({
-    title,
-    description,
-    post,
-    author: req.user._id,
-  });
-  const result = await newPost.save();
-  res.send(result);
+  const result = await createBlogPost(body, author);
+  res.status(201).send(result);
 };
 
 const getPosts = async (req, res) => {
-  const posts = await BlogPost.find().populate("author", "name email -_id");
+  const posts = await getBlogPosts();
   res.send(posts);
 };
 
 const getMyPost = async (req, res) => {
-  const posts = await BlogPost.find({
-    author: await req.user._id,
-  });
-
-  if (!posts) return res.status(404).send("There is no posts for this user");
-  res.send(posts);
+  const authorId = req.user._id;
+  const posts = await getMyBlogPost(authorId);
+  res.status(201).send(posts);
 };
 
 const getPost = async (req, res) => {
-  const post = await BlogPost.findById(req.params.id);
-  if (!post) return res.status(404).send("There is no post with the given ID");
+  const { id: postId } = req.params;
+  const post = await getSinglePost(postId);
   res.send(post);
 };
 
